@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import SampleDocDownloader from "./SampleDocDownloader";
 import InfoHeader from "./InfoHeader";
-
+import reconstructionSample from "../utils/declaration.pdf";
 // Enhanced Field Configuration - Control required fields dynamically
 const FIELD_CONFIG = {
   moaFile: { required: true, defaultValue: null },
@@ -1124,7 +1124,9 @@ export default function GeneralDetailsForm({
               />
             }
           />
+          
 
+         <>
           <FileUploadBox
             label="Reconstruction (CA Certification)"
             fieldPath="reconstructionFile" // NEW: Pass field path
@@ -1139,7 +1141,31 @@ export default function GeneralDetailsForm({
             error={errors.reconstructionFile}
             existingFileUrl={getExistingFileUrl("reconstructionFile")}
             isEditMode={isEditMode}
+
+            
           />
+          <a
+      href={reconstructionSample}
+      download="Reconstruction-Sample-CA-Certification.pdf"
+      className="inline-flex items-center mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold shadow"
+    >
+      Download Sample CA Reconstruction PDF
+      <svg
+        className="w-5 h-5 ml-2"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M12 5v14m7-7H5"
+        />
+      </svg>
+    </a>
+         </>
+          
         </div>
 
         {/* Video Link */}

@@ -5,45 +5,46 @@ import {
   Route,
   Navigate,
   useParams,
+  useLocation,
 } from "react-router-dom";
 import "./App.css";
 import MultiStepForm from "./components/MultiStepForm";
 import ApplicationsList from "./components/ApplicationsList";
 import Navbar from "./components/Navbar"; // Import the navbar
 
+function AppInner() {
+  const location = useLocation();
+  const hideNavbarRoutes = ["/applications/user-create"];
+  const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
+
+  return (
+    <div className="App min-h-screen bg-gray-50">
+      {/* Conditionally render Navbar */}
+      {!shouldHideNavbar && <Navbar />}
+      <main>
+        <Routes>
+          <Route
+            path="/applications/user-create"
+            element={<MultiStepForm mode="create" />}
+          />
+          <Route path="/" element={<Navigate to="/applications" replace />} />
+          <Route path="/applications" element={<ApplicationsList />} />
+          <Route
+            path="/applications/create"
+            element={<MultiStepForm mode="create" />}
+          />
+          <Route path="/applications/edit/:id" element={<EditApplication />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+    </div>
+  );
+}
+
 function App() {
   return (
     <Router>
-      <div className="App min-h-screen bg-gray-50">
-        {/* Add the Navbar */}
-        <Navbar />
-
-        {/* Main Content */}
-        <main>
-          <Routes>
-            {/* Default route - redirect to applications list */}
-            <Route path="/" element={<Navigate to="/applications" replace />} />
-
-            {/* Applications list route */}
-            <Route path="/applications" element={<ApplicationsList />} />
-
-            {/* Create new application route */}
-            <Route
-              path="/applications/create"
-              element={<MultiStepForm mode="create" />}
-            />
-
-            {/* Edit existing application route */}
-            <Route
-              path="/applications/edit/:id"
-              element={<EditApplication />}
-            />
-
-            {/* Catch-all route for 404 */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-      </div>
+      <AppInner />
     </Router>
   );
 }
