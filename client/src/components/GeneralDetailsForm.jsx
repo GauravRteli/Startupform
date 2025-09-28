@@ -1124,48 +1124,44 @@ export default function GeneralDetailsForm({
               />
             }
           />
-          
 
-         <>
-          <FileUploadBox
-            label="Reconstruction (CA Certification)"
-            fieldPath="reconstructionFile" // NEW: Pass field path
-            onFileChange={(file) =>
-              handleFieldChange("reconstructionFile", file)
-            }
-            acceptedFile={getFieldValue(
-              "reconstructionFile",
-              FIELD_CONFIG.reconstructionFile.defaultValue
-            )}
-            description="CA certified reconstruction document"
-            error={errors.reconstructionFile}
-            existingFileUrl={getExistingFileUrl("reconstructionFile")}
-            isEditMode={isEditMode}
-
-            
-          />
-          <a
-      href={reconstructionSample}
-      download="Reconstruction-Sample-CA-Certification.pdf"
-      className="inline-flex items-center mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold shadow"
-    >
-      Download Sample CA Reconstruction PDF
-      <svg
-        className="w-5 h-5 ml-2"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M12 5v14m7-7H5"
-        />
-      </svg>
-    </a>
-         </>
-          
+          <>
+            <FileUploadBox
+              label="Reconstruction (CA Certification)"
+              fieldPath="reconstructionFile" // NEW: Pass field path
+              onFileChange={(file) =>
+                handleFieldChange("reconstructionFile", file)
+              }
+              acceptedFile={getFieldValue(
+                "reconstructionFile",
+                FIELD_CONFIG.reconstructionFile.defaultValue
+              )}
+              description="CA certified reconstruction document"
+              error={errors.reconstructionFile}
+              existingFileUrl={getExistingFileUrl("reconstructionFile")}
+              isEditMode={isEditMode}
+            />
+            <a
+              href={reconstructionSample}
+              download="Reconstruction-Sample-CA-Certification.pdf"
+              className="inline-flex items-center mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold shadow"
+            >
+              Download Sample CA Reconstruction PDF
+              <svg
+                className="w-5 h-5 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 5v14m7-7H5"
+                />
+              </svg>
+            </a>
+          </>
         </div>
 
         {/* Video Link */}
@@ -1576,7 +1572,7 @@ export default function GeneralDetailsForm({
       )}
 
       {/* Continue Button */}
-      <div className="flex justify-end mt-8">
+      {/* <div className="flex justify-end mt-8">
         <button
           onClick={handleContinue}
           disabled={isValidating}
@@ -1603,7 +1599,7 @@ export default function GeneralDetailsForm({
             />
           </svg>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
